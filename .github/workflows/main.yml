@@ -25,4 +25,4 @@ jobs:
             -H "Accept: application/vnd.github.everest-preview+json" \
             -H "Content-Type: application/json" \
             https://api.github.com/repos/${{ env.NEXT_IN_CHAIN }}/actions/workflows/${{ env.NEXT_IN_CHAIN_WORKFLOWID }}/dispatches \
-            --data '{"ref":"trigger-build"}'
+            --data '{"ref":"master"}'
