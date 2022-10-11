@@ -11,6 +11,7 @@ on:
 
 env:
   NEXT_IN_CHAIN: "enhanceMaxMcMurray/axelor-docker"
+  NEXT_IN_CHAIN_WORKFLOWID: "docker-image" 
 
 jobs:
   build:
@@ -19,4 +20,9 @@ jobs:
       - uses: actions/checkout@v3
       - name: trigger
         run: |
-          curl -XPOST -u "${{ secrets.PAT_USERNAME}}:${{secrets.PAT_TOKEN}}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/${{ env.NEXT_IN_CHAIN }}/dispatches --data '{"event_type": "trigger-build"}'
+          curl -XPOST \
+            -u "${{ secrets.PAT_USERNAME }}:${{ secrets.PAT_TOKEN }}" \
+            -H "Accept: application/vnd.github.everest-preview+json" \
+            -H "Content-Type: application/json" \
+            https://api.github.com/repos/${{ env.NEXT_IN_CHAIN }}/actions/workflows/${{ env.NEXT_IN_CHAIN_WORKFLOWID }}/dispatches \
+            --data '{"ref":"trigger-build"}'
