@@ -26,3 +26,10 @@ jobs:
             -H "Content-Type: application/json" \
             https://api.github.com/repos/${{ env.NEXT_IN_CHAIN }}/actions/workflows/${{ env.NEXT_IN_CHAIN_WORKFLOWID }}/dispatches \
             --data '{"ref":"master"}'
+      - name: run application
+        run: |
+          git submodule init
+          git submodule update
+          git submodule foreach git checkout master
+          git submodule foreach git pull origin master
+     
